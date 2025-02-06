@@ -1,0 +1,12 @@
+name: myfirstworkflow
+on: [push]
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+        - name: print hello world
+          run: echo "hello world"
+        - name: print version of node
+          run: |
+            node -v
+            npm -v
