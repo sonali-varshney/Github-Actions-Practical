@@ -18,7 +18,7 @@ jobs:
           echo "db ka adress is : $MONGODB_CLUSTER_ADDRESS "    
       - name: install dependency
         run: |
-          echo "db ka naam: $ {{ env.MONGO_DB_NAME }}"
+          echo "db ka naam: ${{ env.MONGO_DB_NAME }}"
     
 
 
