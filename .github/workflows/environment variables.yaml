@@ -1,0 +1,25 @@
+name: environment variables
+on: workflow_dispatch
+env:
+  MONGO_DB_NAME: sonali-demo-db-name        #at workflow level
+jobs:
+  test:
+    env:
+      MONGODB_CLUSTER_ADDRESS: abc
+      MONGODB_USERNAME: def
+      MONGODB_PASSWORD:  xyz
+      PORT: 423
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependency
+        run: |
+          echo "db ka adress is : $MONGODB_CLUSTER_ADDRESS "    
+      - name: install dependency
+        run: |
+          echo "db ka naam: $ {{ env.MONGO_DB_NAME }}"
+    
+
+
+        
