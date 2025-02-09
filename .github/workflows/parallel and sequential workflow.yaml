@@ -18,6 +18,6 @@ jobs:
     needs: firstJob
     steps:
       - name: print a string
-        run: Write-Output "Windows machine h ye"
+        run: Write-Output "Windows machine h ye."
 
 
