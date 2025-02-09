@@ -12,12 +12,13 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: View SW Version
-        run: sw_vers
+        run: sw_versi
   thirdjob:
     runs-on: windows-latest
     needs: firstJob
     steps:
       - name: print a string
-        run: Write-Output "Windows machine h ye."
+        run: Write-Output "Windows machine h ye"
 
-
+# by default jobs parallely run krti h.. if you want to make them run sequentially then
+# for dependnet jobs, use "needs"..so upr eg me phle first job chlegi phr third job
