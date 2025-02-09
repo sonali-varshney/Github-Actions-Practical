@@ -11,4 +11,7 @@ jobs:
       - name: after checkout
         run: ls -lrt
 
-  
+#note normal commands "run" k andr de rhe but actions ko "uses k andr de rhe h
+#ye actions step k andr "run" ki jagah likhte h.  "Checkout" wala action can take inputs like repositor(you could control which GitHub Repository will be used. But by default, the Repository to which the Workflow is attached will be used).. baki kya kya input legi?..check its documnetation page.ye input "with" keyword k sth do
+# eg:actions:actions/checkout@v3
+#   with:
