@@ -1,0 +1,17 @@
+name: context and expression
+on: workflow_dispatch
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: context testing
+        run: |
+         echo "${{ toJson(github) }}"
+         echo "print secret context"
+         echo "${{ toJson(secrets) }}"
+         echo '${{ toJson(job) }}'
+         echo '${{ toJson(secrets) }}'
+         echo '${{ toJson(steps) }}'
+         echo '${{ toJson(runner) }}'
+
+      
