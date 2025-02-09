@@ -7,7 +7,7 @@ jobs:
       - name: print hi
         run: echo "Hi.This is the first job's first step "
       - name: print hello
-        run: echo "Hello.This is the first job's 2nd step"
+        run: echo "Hello.This is the first job's 2nd step."
   secondJob:
     runs-on: macos-latest
     steps:
