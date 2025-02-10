@@ -1,0 +1,19 @@
+name: eventWorkflowDispatch
+on: 
+  workflow_dispatch:                               
+    inputs:                                         # we cn ask for the input from user in workflow dispatch
+      anyVariableNameIsmeValueStoreHogiIsInputKi:
+        description: please select a environment     # jo UI me likh k aega ki kya h ye
+        required: true                               # mandatory h input dena isko ya ni
+        type: boolean                            # it can be choice, boolean, environment
+
+#concurrency: anyNameToConcurrency               # anyNameToConcurrency isko bolte h concurrency group
+jobs: 
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print the value of input
+        run: |
+          echo "value of input is: ${{ inputs.anyVariableNameIsmeValueStoreHogiIsInputKi }}"
+        
+
