@@ -2,10 +2,13 @@ name: matrix
 on: push
 jobs:
   firstjob:
+    continue-on-error: true
     strategy:
       matrix:
         sample_variable_h_ye_node_version: [10, 13, 14]
         sample_variable_h_ye_os_runs_on_k_liye: [ubuntu_latest, windows-latest]
+      max-parallel: 3
+      fail-fast: false
     runs-on: ${{ matrix.sample_variable_h_ye_os_runs_on_k_liye }}
     steps:
       - run: node -v
@@ -13,3 +16,9 @@ jobs:
         with:
           node-version: ${{ matrix.sample_variable_h_ye_node_version }}
       - run: node -v
+
+# So let's say we not only need to run this job for a certain node version only.Let's also say we need to run it for a certain node version and a certain operating system. So what will happen is our job is going to run for all possible combinations of these two arrays. So Ubuntu latest and node version 14,Ubuntu latest and 15, Ubuntu latest 16,Windows latest 14, Windows latest 15, Windows latest 16. So we're going to have six jobs.
+
+# see line 10-> by default, all of our jobs are going to run in parallel at the same time . However, we can limit the maximum number of parallel jobs in our matrix by adding here in our strategy "max-parallel".And we can set it to three, for example.So only three are going to be running at the same time,and when one is done, another one can start, and so on.But only three can be running at the same time.
+
+# see line 11-> So as we mentioned in our jobs, if one of them fails,the result of our entire workflow is going to be failure.But not only that,but also any pending or in progress jobs in our matrix are going to be canceled.So if a job in our matrix failed,any other job that is currently in progress or pending is going to be canceled.However, we can also override this default behavior by adding here in our strategy objects an option called "fail-fast",and we can set it to false if we would like to.And this way, if any job in our matrix failed,the other jobs are going to continue normally.
