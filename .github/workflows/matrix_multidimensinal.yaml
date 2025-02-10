@@ -1,0 +1,15 @@
+name: matrix
+on: push
+jobs:
+  firstjob:
+    strategy:
+      matrix:
+        sample_variable_h_ye_node_version: [10, 13, 14]
+        sample_variable_h_ye_os_runs_on_k_liye: [ubuntu_latest, windows-latest]
+    runs-on: ${{ matrix.sample_variable_h_ye_os_runs_on_k_liye }}
+    steps:
+      - run: node -v
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.sample_variable_h_ye_node_version }}
+      - run: node -v
