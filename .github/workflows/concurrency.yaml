@@ -6,10 +6,19 @@ on:
         description: please select a environment     # jo UI me likh k aega ki kya h ye
         required: true                               # mandatory h input dena isko ya ni
         type: boolean                            # it can be choice, boolean, environment
+      secondVariable:
+        description: please select environment     # jo UI me likh k aega ki kya h ye
+        required: true                               # mandatory h input dena isko ya ni
+        type: choice
+        options:
+          - prod
+          - dev   
 
 concurrency: 
     group: anyNameToConcurrency               # anyNameToConcurrency isko bolte h concurrency group
+    # group: 
     cancel-in-progress: true
+    
 jobs: 
   firstjob:
     runs-on: ubuntu-latest
@@ -21,6 +30,7 @@ jobs:
         run: sleep 20
         
 # to ensure that only a single job or a workflow will run at a time, and avoid the same job or the same workflow from running in parallel at the same time
-# normally bina concurrency k..agr hm 5 baar bhi run kre 1 workflow ko to vo 5 baar chlega.but if we use concurency to 5 baar front end me start hongi job but vo chlengi hi ni vo cancel ho jaengi(exclamation ! mark aa jaega)..bs jo sbse phle inititate ki thi vo chlegi + jo last wali h vo chlegi phli wali k run complete hone k baad..bich ki sari ni chlegi
+# normally bina concurrency k..agr hm 5 baar bhi run kre 1 workflow ko to vo 5 baar chlega.but if we use concurency to 5 baar front end me start hongi job but vo chlengi hi ni vo cancel ho jaengi(exclamation ! mark aa jaega)..bs jo sbse phle inititate ki thi vo chlegi + jo last wali h vo chlegi phli wali k run complete hone k baad..bich ki sari ni chlegi 
 #if i want pehli wali agr chl rhi h means in progress h to vo cancel ho jae bs last wali chle..chle hi ni..to we use "cancel-in-progress" we also have the option to cancel the one that is already in progress and start the latest one directly. So we will not have to wait for this one to even finish.
+#lets say i baar workflow run kia prod env k liye. 1 baqar kia dev env k liye.. to phla wala cancel ho jaega bs last wala chlega("cancel-in-progress") rkha h to..but lets say i want prod k liye mene 3-4 baar workflow run kia..and dev k liye bhi 3-4 baar kia..i want dev ka apna chle prod ka alg chla..but cancel ho jaae baaki k runs inke..so ye dropdwon k basis pr mujhe run krne h workflow..so i cn make the field dynamic(see line)..so ye basically chltye rhenge dev and prod k bcz concurrency group is now different for both
 
