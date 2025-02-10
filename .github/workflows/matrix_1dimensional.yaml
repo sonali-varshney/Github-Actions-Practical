@@ -1,4 +1,4 @@
-name: matrix
+name: matrixOneDimensional
 on: push
 jobs:  #we need to run this job multiple times using different node versions. in our runner machine,we have a certain node version installed on this machine.However, what we can do is we can use this action "setup-node",which will allow us to use different node versions. we also have similar actions for other languages, as well.We have setup-ruby, setup-python, and so on.
   firstjob:
