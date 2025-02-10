@@ -15,8 +15,8 @@ on:
           - dev   
 
 concurrency: 
-    group: anyNameToConcurrency               # anyNameToConcurrency isko bolte h concurrency group
-    # group: 
+   # group: anyNameToConcurrency                         # anyNameToConcurrency isko bolte h concurrency group
+    group: ${{ inputs.secondVariable }}    
     cancel-in-progress: true
     
 jobs: 
