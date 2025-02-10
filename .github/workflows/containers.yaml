@@ -1,0 +1,17 @@
+name: container
+on: push
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    container:
+      image: node:16
+#     env:
+    env:
+        MONGODB_CLUSTER_ADDRESS: abc
+        MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+        MONGODB_PASSWORD:  ${{ secrets.MONGODB_PASSWORD }}
+    steps:
+      - name: firststep
+        uses: actions/Checkout@v3
+        
+      
