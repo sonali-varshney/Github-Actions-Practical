@@ -6,6 +6,13 @@ on:
         description: please select a environment     # jo UI me likh k aega ki kya h ye
         required: true                               # mandatory h input dena isko ya ni
         type: environment                            # it can be choice, boolean
+      secondVariableNameIsmeValueStoreHogiIsInputKi:
+            description: please select chocolate or icecream     # jo UI me likh k aega ki kya h ye
+            required: true                               # mandatory h input dena isko ya ni
+            type: choice
+            options:
+              - chocolate
+              - icecream   
 
 jobs:
   firstjob:
@@ -14,4 +21,5 @@ jobs:
       - name: print the value of input
         run: |
           echo "value of input is: ${{ inputs.anyVariableNameIsmeValueStoreHogiIsInputKi }}"
+        
 
