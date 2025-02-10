@@ -1,5 +1,6 @@
 name: context and expression
 on: workflow_dispatch
+run-name: "eg of Expressions Contexts by @${{ github.actor }}, event: ${{ github.event_name }}"
 jobs:
   firstjob:
     runs-on: ubuntu-latest
@@ -10,8 +11,11 @@ jobs:
          echo "print secret context"
          echo "${{ toJson(secrets) }}"
          echo '${{ toJson(job) }}'
-         echo '${{ toJson(secrets) }}'
          echo '${{ toJson(steps) }}'
          echo '${{ toJson(runner) }}'
 
       
+# context me vo sari info hoti h like github context xontains info about repo, owner, events like pull,push,issues.
+# we cn get the info from context like ${{ github.events }}
+# yha toJson function is used to format the output of github context
+# by defualt hm jb workflow run krte h to UI me commit msg, merge req msg, pull request msg ye sb dikhata h.but i want jb me workflow run kru to ye default wala na dikha k mera custom title dikhae..for that we use run-name: in line 3
