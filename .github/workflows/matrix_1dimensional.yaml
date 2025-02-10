@@ -1,6 +1,6 @@
 name: matrix
 on: push
-jobs:
+jobs:  #we need to run this job multiple times using different node versions. in our runner machine,we have a certain node version installed on this machine.However, what we can do is we can use this action "setup-node",which will allow us to use different node versions. we also have similar actions for other languages, as well.We have setup-ruby, setup-python, and so on.
   firstjob:
     runs-on: ubuntu-latest
     strategy:
@@ -16,3 +16,14 @@ jobs:
       - name: check node version before running matrix
         run: node -v
 
+#imagine you have one job and you need to run this job not only once,but multiple times using different variables. Instead of having to define your job multiple times, you can define a matrix and your job is going to run multiple times based on the values in this matrix.
+
+# we can use it by adding a "strategy" key here in our "job" level.
+# strategy:
+#  matrix:
+#    <anyName>: [<1stvalue>,<2ndvalue>,<3rdvalue>]
+
+#To access this value is of course using context,and the context is called matrix.
+# ${{ matrix.<uprWalaName> }}
+
+# jb run krenge workflow ko to us k andr 3 job create hongi bcz matrix me 3 value di h
