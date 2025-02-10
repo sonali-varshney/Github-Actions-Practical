@@ -5,7 +5,7 @@ on:
       anyVariableNameIsmeValueStoreHogiIsInputKi:
         description: please select a environment     # jo UI me likh k aega ki kya h ye
         required: true                               # mandatory h input dena isko ya ni
-        type: environment                            # it can be choice, boolean
+        type: boolean                            # it can be choice, boolean, environment
       secondVariableNameIsmeValueStoreHogiIsInputKi:
             description: please select chocolate or icecream     # jo UI me likh k aega ki kya h ye
             required: true                               # mandatory h input dena isko ya ni
