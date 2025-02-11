@@ -1,0 +1,13 @@
+name: simple action
+on: workflow_dispatch
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: use of a javascript action
+        id: greet                                      # to get the output of this step, we need to give an ID to the step
+        uses: actions/hello-world-javascript-action@v3 # ye v3 ki jgh we cn use branch,tag,commitid etc
+        with:                                          # 1 action takes input ..kya input lega,..see its documentation
+          who-to-greet: Ali
+      - name: see how to get output of an action       # an action can produce outputs.this action produces an output, which is time.how can we use these outputs?We can use them in subsequent steps in this way. 
+        run: echo "${{ steps.greet.outputs.time }}"
