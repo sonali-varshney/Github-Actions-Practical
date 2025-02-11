@@ -1,0 +1,32 @@
+name: reusable
+on:
+  workflow_call:                            # for reusable workflow we have to use event workflow_dispatch
+    inputs:                                 # just like dispatch workflow, reusable workflow can accept Inputs
+      anyvariableforinput:
+        description: " Input description"
+        required: false
+        type: string
+    secrets:                                #  reusable workflow can accept Secrets
+      anyvariableforsecret:
+        description: " Secret description"
+        required: false
+
+jobs:                                      # just like normal workflow, reusable wrkflow wl also hv jobs
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/Checkout@v3
+      - run: ls -a
+  secondJob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: display github context
+        run: echo "${{ toJson(github) }}"
+      - name: display input variable
+        run: echo "$inputs.anyvariableforinput"
+      - name: display secret
+        run: echo "$inputs.anyvariableforsecret"
+     
+
+#in order to use a reusable workflow both the Caller workflow and the reusable workflow can live in the same repository or they can even be in different repositories.So to demonstrate, I have created a new repository here
+

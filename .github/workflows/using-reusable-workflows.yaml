@@ -1,0 +1,15 @@
+name: using reusable wrkflow
+on:
+  workflow_dispatch:
+    inputs:
+      isworkflowKaInputVariable:
+        description: " Input description"
+        required: false
+        type: string
+jobs:
+  test:
+    uses: ./.github/workflows/reusable.yaml # abhi tk "uses" hm steps k andr likh rhe the..but ab reusable wrkflow k liye jobs k andr likhte h..isme reusable wrkflow ka path do
+    with:    #reusable workflow is accepting input
+      anyvariableforinput: ${{ inputs.isworkflowKaInputVariable }} #ye input isi workflow ka h jo upr define kia h..uski jo value user dega usko hm pass kr rhe h reusable workflow ko.
+    secrets:    #note ye secret input ni h ..iska indedntation dekho
+      anyvariableforsecret: ${{ secrets.MONGODB_USERNAME }}   # ye secret is workflow ka h..repository settings me define kia h iski value.. vo value yha se hm pass kr rhe h reusable wrkflow me
