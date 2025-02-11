@@ -6,8 +6,8 @@ on:
         description: " Input description"
         required: false
         type: string
-jobs:
-  test:
+jobs:   
+  test:  #since this is a caller job, isme koi bhi steps ni likhenge , na hi runs-on likhenge bcz ye khud kuch ni kr rhi job..ye bs dusri job ko cl kr rhi h jo further actual job chla rha h
     uses: ./.github/workflows/reusable.yaml # abhi tk "uses" hm steps k andr likh rhe the..but ab reusable wrkflow k liye jobs k andr likhte h..isme reusable wrkflow ka path do
     with:    #reusable workflow is accepting input
       anyvariableforinput: ${{ inputs.isworkflowKaInputVariable }} #ye input isi workflow ka h jo upr define kia h..uski jo value user dega usko hm pass kr rhe h reusable workflow ko.

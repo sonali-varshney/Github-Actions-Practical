@@ -23,10 +23,17 @@ jobs:                                      # just like normal workflow, reusable
       - name: display github context
         run: echo "${{ toJson(github) }}"
       - name: display input variable
-        run: echo "$inputs.anyvariableforinput"
+        run: echo "${{ inputs.anyvariableforinput }}"
       - name: display secret
-        run: echo "$inputs.anyvariableforsecret"
+        run: echo "${{ secrets.anyvariableforsecret }}"
      
 
 #in order to use a reusable workflow both the Caller workflow and the reusable workflow can live in the same repository or they can even be in different repositories.So to demonstrate, I have created a new repository here
 
+#If our reusable workflow lives in the same repository we just going to put the path to the reusable workflow. However, in our case, it is in a different repository. So we're going to put the name, the owner  and the repository name, and then the path to our folder to our reusable workflow folder.
+
+#However, make sure that in your organization settings or repository settings, in actions -> general -> we have to allow using reusable workflows. So in here, make sure you have allow all actions and reusable workflows.This is going to allow using any action or any reusable workflow from any author or from any repository. However, you can make this more restrictive.You can only allow using actions and reusable workflows from the same repository. Or you can even choose specific actions and reusable workflows.
+
+#So what we need to see here, we need to see when we check out in a reusable action, are we going to check out into the repository that has the reusable action, which in this case is this repository, or we're going to check out to the repository that uses that reusable action when we use the reusable action in our main repository in a moment. So we need to know that.
+#we also need to know in the GitHub context, are we going to have information about the repository that has the reusable workflow or the repository that uses the usable workflow. So in here, let's add a step, display GitHub context.
+#to jb "using reusable wrkflow" run krenge then you can see now, even though we had only one job here when we used our reusable workflow.However, our reusable workflow had two jobs.So in here, we are going to eventually have two jobs.So the checkout job, let's open that one.And what we needed to to see is we needed to know which repository are we going to check out into. If we are checking out in a reusable workflow is it this repository that our reusable workflow lives in or the repository, our original repository that we are calling the reusable workflow from?And as you maybe have expected, it is going to be the repository that we are calling the reusable workflow from.We're not going to check out to some other public repository where a reusable workflow that we are using lives in.We're going to check into our own repository, the repository that we are calling the reusable workflow from, right? So I hope that's clear and similar to that and also in our GitHub context we're going to get information about our repository. Not the repository that the reusable workflow lives in. So in the GitHub log here, let's go to this second job.So in here, if we take a lookmaybe at the name of the repository it is going to be our original repository the one that we are calling the reusable workflow from and not the one that contains the reusable workflow.And finally, let's take a look at our input.We should get our input that we have provided when we ran our workflow.And in here, we're not going to get the value.However, we can make sure that this contains the value since we are having this masked value here.
