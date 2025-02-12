@@ -1,0 +1,21 @@
+name: encrypt and decrypt
+on: push
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout     # phle checkout krenge secret wali files
+        uses: actions/Checkout@v3
+      - name: Decrypt file
+        env:
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
+        run: |
+          mkdir $HOME/newfolder       
+          gpg --decrypt --quiet --batch --ye --passphrase=$PASSPHRASE --output $HOME/newfolder/decrypted.json secrets.json.gpg 
+              - name: View Encrypted File Content (NEVER DO THIS)
+      - name: lets open decrypted file to generate hui but fdont open it in prod
+        run: cat $HOME/newfolder/decrypted.json
+          
+# line 13-> ye folder bna rhe h ki file decrypt hone k baad kaha aa k store ho
+# line 14-> --quiet in order to prevent displaying outputs from this command. And also we need to add --batch here. Why, because this command, GPG can be interactive and we need to prevent it from being interactiv in our workflow. --yes, here, to assume that for any interaction the answer is always going to be yes.
+    
