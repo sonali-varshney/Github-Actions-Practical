@@ -9,3 +9,8 @@ jobs:
             echo "value of GITHUB_SHA is: $GITHUB_SHA"
             echo "value of GITHUB_REF is: $GITHUB_REF"
     
+# phle 1 baar pus kro ise tb 1 baar ye wrflow run hoga
+# Note: new branch creation pr bhi push event trigger hoga..so 1 baar phr ye wrflow run hoga
+# PR k liye create a branch..us branch me code change kro kuch(code me na ki wrflow me) phr dekho 1 baar phr ye wrflow run hoga. but is baar commit id jo new branch me code push kr k bni h vo hogi..phr create a PR from frnt end..tbhi ye phr se trigger hoga..Note: this time jo merge ki branch name hogi vo kuch aise naam ki hogi jo hmari repo me exist hi ni krti..vo github khud bna leta h..hkm us branch ko dekh ni skte na hi us commit id ko jo PR creation k time bnta h...see hr baar commit id and branch jo output me ai vo dekho
+# issue can only b created on default(main or master) branch ..to create issue, Repo -> Issue->new issue -> give anything..phr ye wrflow run hoga ...note abhi ye issue open h..close ni hua..we cn add labels to this issue.. for labelling..right side me label hoga click on it..select any label..phr se wrkflow run ho jaega..note: ab ye wrkflow issue k open hona,close hone hr activity pr ho rha h..but i want sb activity pr na ho..bs open ya close pr ho run..so for that we cn use "Activity Type"
+ 

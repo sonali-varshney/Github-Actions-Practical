@@ -1,0 +1,15 @@
+name: event
+on: 
+  push:    # there is no activity type for push
+  pull_request:
+    types: [labeled, assigned]     # ye sare events documentation me dekho
+  issues:
+    types: [label]
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print krao documentation me jo GITHUB_SHA and GITHUB_REF diya h unki value
+        run: |
+            echo "value of GITHUB_SHA is: $GITHUB_SHA"
+            echo "value of GITHUB_REF is: $GITHUB_REF"
