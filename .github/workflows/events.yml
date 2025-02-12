@@ -1,0 +1,11 @@
+name: event
+on: [push, pull_request,issues]
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print krao documentation me jo GITHUB_SHA and GITHUB_REF diya h unki value
+        run: |
+            echo "value of GITHUB_SHA is: $GITHUB_SHA"
+            echo "value of GITHUB_REF is: $GITHUB_REF"
+    
