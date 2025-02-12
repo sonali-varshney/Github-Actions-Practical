@@ -13,8 +13,7 @@ jobs:
           PASSPHRASE: ${{ secrets.PASSPHRASE }}
         run: |
           mkdir $HOME/newfolder       
-          gpg --decrypt --quiet --batch --ye --passphrase=$PASSPHRASE --output $HOME/newfolder/decrypted.json secrets.json.gpg 
-              - name: View Encrypted File Content (NEVER DO THIS)
+          gpg --quiet --batch --yes --decrypt --passphrase=$PASSPHRASE --output $HOME/newfolder/decrypted.json secrets.json.gpg 
       - name: lets open decrypted file to generate hui but fdont open it in prod
         run: cat $HOME/newfolder/decrypted.json
           
