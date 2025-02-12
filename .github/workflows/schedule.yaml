@@ -1,12 +1,24 @@
 name: schedule workflow
 on:
   schedule:
-    - cron: "0/5 * * * *"
-    - cron: "0 14 * * *"     #it can accept multiple cron..So hr 5 min bd chle,2 bje chle daily
+    - cron: "0/5 * * * *"    # minutes  hours  daysOfTheMonth  month  DaysOfTheWeek
+    - cron: "0 14 * * *"     # it can accept multiple cron..So hr 5 min bd chle,2 bje chle daily
 jobs:
   jobfirst:
      runs-on: ubuntu-latest
      steps:
        - name: echoing
          run: echo "Hi"
+  
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v8
+        with:
+          stale-issue-message: "This is some message." #it is comment, and it is going to be added to your issue or pull request when your issue or pull request is marked as stale.
+          days-before-stale: 1                 # specifies how old the issue or the pull request should be before marking it as stale.
+          days-before-close: 5                 # specifies how many days a stale issue or pull request will remain open before closing it.
       
+# In GitHub actions you cannot run every one minute, for example or two minutes. The minimum is five minutes.
+
+# We have an action here called Stale and this is going to mark your old or inactive issues and pull requests as stale. So let's say we would like to automate the proces of marking our issues and pull requests as stale using GitHub actions. What we can do is we can use this action and then run a workflow maybe every day 
