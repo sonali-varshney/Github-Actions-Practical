@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: checkout     # phle checkout krenge secret wali files
         uses: actions/Checkout@v3
+      - name: list
+        run: ls -a
       - name: Decrypt file
         env:
           PASSPHRASE: ${{ secrets.PASSPHRASE }}
