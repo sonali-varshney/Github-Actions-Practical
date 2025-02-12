@@ -1,0 +1,12 @@
+name: schedule workflow
+on:
+  schedule:
+    - cron: "0/5 * * * *"
+    - cron: "0 14 * * *"     #it can accept multiple cron..So hr 5 min bd chle,2 bje chle daily
+jobs:
+  jobfirst:
+     runs-on: ubuntu-latest
+     steps:
+       - name: echoing
+         run: echo "Hi"
+      
