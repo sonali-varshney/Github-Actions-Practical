@@ -1,4 +1,4 @@
-name: event
+name: Activity Type event
 on: 
   push:    # there is no activity type for push
   pull_request:
