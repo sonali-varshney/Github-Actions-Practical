@@ -1,0 +1,9 @@
+name: repository dispatch
+on:
+  repository_dispatch:
+    types: [build]
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo ${{ github.event.client_payload.env }}
