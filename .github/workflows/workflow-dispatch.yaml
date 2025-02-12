@@ -9,17 +9,24 @@ on:
       secondVariableNameIsmeValueStoreHogiIsInputKi:
             description: please select chocolate or icecream     # jo UI me likh k aega ki kya h ye
             required: true                               # mandatory h input dena isko ya ni
-            type: choice
-            options:
+            type: choice                                # for dropdown
+            options: 
               - chocolate
-              - icecream   
-
+              - icecream 
+      thirdvariableNameIsmeValueStoreHogiIsInputKi::
+            description: A boolean option
+            required: false
+            type: boolean                           # checkbox k liye
+      fourthvariableNameIsmeValueStoreHogiIsInputKi::
+                description: "Environment"
+                type: environment
+                required: true      # to create this type, Settings-> environment-> new environment -> give name say production
 jobs:
   firstjob:
     runs-on: ubuntu-latest
     steps:
-      - name: print the value of input
+      - name: print the value of input                   # to access value of input
         run: |
-          echo "value of input is: ${{ inputs.anyVariableNameIsmeValueStoreHogiIsInputKi }}"
+          echo "value of input is: ${{ inputs.anyVariableNameIsmeValueStoreHogiIsInputKi }}"   
         
 
