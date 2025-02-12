@@ -10,6 +10,11 @@ on:
       anyvariableforsecret:
         description: " Secret description"
         required: false
+    outputs:                                #
+      anyvariableforoutput:
+        description: " output description"
+        value: ${{ thirdJob.outputs.koiNaamDeDoOutputKo.date }}
+
 
 jobs:                                      # just like normal workflow, reusable wrkflow wl also hv jobs
   firstjob:
@@ -26,6 +31,15 @@ jobs:                                      # just like normal workflow, reusable
         run: echo "${{ inputs.anyvariableforinput }}"
       - name: display secret
         run: echo "${{ secrets.anyvariableforsecret }}"
+#is output se phle basic action.yml dekho
+  thirdJob:                    # ye job output generate krane k liye h..as we know reusable wrkflow cn take input,secret produce output
+    runs-on: ubuntu-latest
+    outputs:                   # line 34 dekho..abhi sirf step o/p gnrt kr rhiwe need our entire job to generate an output.
+       koiNaamDeDoOutputKo: ${{ steps.kuchbhi.outputs.date }}  # this is how we map step output with job output
+    steps:                     #ye step 1 output produce kr rhi h..in order to use this output in job,we need to gv this step a id
+      - run: echo "date=$(date)" >> GITHUB_OUTPUT    # GITHUB_OUTPUT is a environment variablle
+        id: kuchbhi
+      
      
 
 #in order to use a reusable workflow both the Caller workflow and the reusable workflow can live in the same repository or they can even be in different repositories.So to demonstrate, I have created a new repository here
