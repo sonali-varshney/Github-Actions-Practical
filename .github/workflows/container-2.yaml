@@ -1,0 +1,27 @@
+name: container
+on: push
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    container:
+      image: node:20.3-alpine3.17
+      # credentials:                        # in case private repo h to
+      #   username:
+      #   password:
+      env:                                   #this is the env var required for container..
+        API_URL: some-url.com                # say anything
+      ports:                                 # ports de skte h ki kis port pr app sunegi
+        - 80
+    # volumes:                               # volume bhi likh skte h container me
+    #   - vol_name:/path/in/container        # ye named volume h..means vol ko naam de diya
+    #   - /path/to/container                 # ye unanonymous volume h..means vol ko koi naam ni dia
+    #   - /path/in/host:/path/in/container   # host ki vol container vol se map kr rhe
+    # options: --cpus 1                      # ye options me vo sb likh skte h jo container creation  k time likhte h..documentation me dkh lo
+
+    steps:
+      - name: confirm kro ki ye container me chl rhi h step jo ki node ki image use kr rha h and alpine OS use kr rha h
+        run: |
+          node -v
+          cat /etc/os-release
+      - name: jo container k andr env var set kia h uski value dkh lo print kra k
+        run: echo $API_URL

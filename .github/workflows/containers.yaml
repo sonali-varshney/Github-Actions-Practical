@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: node:16
-#     env:
+#     env:                                       #this is the env var required for container..
     env:
         MONGODB_CLUSTER_ADDRESS: abc
         MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
