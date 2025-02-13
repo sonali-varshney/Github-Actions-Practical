@@ -1,0 +1,47 @@
+name: container in a step
+on: push
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    container:
+      image: node:20.3-alpine3.17           #in case of private registry, <registryname>/<owner>/<image>
+      # credentials:                        # in case private repo h to
+      #   username:
+      #   password:
+      env:                                   #this is the env var required for container..
+        API_URL: some-url.com                # say anything
+      ports:                                 # ports de skte h ki kis port pr app sunegi
+        - 80
+    # volumes:                               # volume bhi likh skte h container me
+    #   - vol_name:/path/in/container        # ye named volume h..means vol ko naam de diya
+    #   - /path/to/container                 # ye unanonymous volume h..means vol ko koi naam ni dia
+    #   - /path/in/host:/path/in/container   # host ki vol container vol se map kr rhe
+    # options: --cpus 1                      # ye options me vo sb likh skte h jo container creation  k time likhte h..documentation me dkh lo
+
+    steps:
+      - name: confirm kro ki ye container me chl rhi h step jo ki node ki image use kr rha h and alpine OS use kr rha h
+        run: |
+          node -v
+          cat /etc/os-release
+      - name: jo container k andr env var set kia h uski value dkh lo print kra k
+        run: echo $API_URL
+      - name: run a step in a container   # ye step alg container me chl rhi h..job wale container me ni chl ri
+        uses: docker://node:20.3-alpine3.17    #to run a step in a container,we need to write uses: docker//<registry>/<image>:<tag>
+        with:
+          entrypoint: /usr/local/bin/node
+          args: -p 2+3
+      - name: since entrypoint already set hota h node in node image..so we dont need to set it..so do not require entrypoint
+        uses: docker://node:20.3-alpine3.17   # ye step alg container me chl rhi h..job wale container me ni chl ri
+        with:
+          args: -v
+
+
+#This entry point is going to override the entry point of the Docker image that we are using if it exists. If it does not exist,it will just add this entry point.
+# However, in here, we don't have the shell form and the executable form like in a Docker file. In here, we can just add a path to an executable. So let's say we would like to execute node, node command.We'll have to add the path to the node command.So how can we know the path to the node command?In Mac or Ubuntu you can run this command "type node" and you're going to get the path to node. So this is of course on my local machine, but since we are running our job in an Ubuntu container, the path here is going to be the same.
+
+# And let's say for example, we need to run node.So here in my local machine, we can run "node -p" to evaluate and print something.lets say we want to run ,evaluate and print "2+3".is command ka output aega 5 .So let's say we would like to pass -p and then 2+3 to our node command. We can do that using "args".
+
+# So in addition to entry point, we can have args.And args are going to be used in place of the command(CMD) instruction that we used in a Docker file. So remember, as we mentioned in a Docker file,we can have the command instruction where we can pass additional arguments to our entry point.And it can be in a shell or executable form.However in here we don't have a shell and executable form,we cannot have an array here.However, we can only have a single string.So we can do something like this -p and then 2+3. So what will happen now is this step is going to run in a container based on this image.And when this container starts, our entry point is going to run, which is node and then our arguments. So we should get an output of five for this step.
+
+# And by the way, you do not have to pass an entrypoint or arguments, of course,if your Docker image already has a default entry point.So, for instance, the node image has an entry point of node.So we can actually skip this, actually let's keep it just for testing 
+# let's add another step.And maybe let's this time log the node version.Let's use the same image. However, let's not put the entry point which is by default already the node command.And as an argument, let's just add -v here.So when this Docker container is started, we should run node-v and get our output.So as you can see,now we have multiple containers in our workflow.We have the original container that we specified for all our steps in our job.

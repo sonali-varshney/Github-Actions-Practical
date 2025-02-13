@@ -4,7 +4,7 @@ jobs:
   firstjob:
     runs-on: ubuntu-latest
     container:
-      image: node:20.3-alpine3.17
+      image: node:20.3-alpine3.17           #in case of private registry, <registryname>/<owner>/<image>
       # credentials:                        # in case private repo h to
       #   username:
       #   password:
