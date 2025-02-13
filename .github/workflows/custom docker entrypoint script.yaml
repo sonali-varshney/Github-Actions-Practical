@@ -1,0 +1,13 @@
+name: create custom docker entrypoint script
+on: push
+jobs:
+  firstJob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout kro bcz we want script wali file in our workflow
+        uses: actions/Checkout@v3
+      - name: run a bash script
+        uses: docker://node:20.3-alpine3.17
+        with:
+          entrypoint: ./script.sh
+          args: "ye arguments pass kr rhe h scripts.sh ko"

@@ -45,3 +45,5 @@ jobs:
 
 # And by the way, you do not have to pass an entrypoint or arguments, of course,if your Docker image already has a default entry point.So, for instance, the node image has an entry point of node.So we can actually skip this, actually let's keep it just for testing 
 # let's add another step.And maybe let's this time log the node version.Let's use the same image. However, let's not put the entry point which is by default already the node command.And as an argument, let's just add -v here.So when this Docker container is started, we should run node-v and get our output.So as you can see,now we have multiple containers in our workflow.We have the original container that we specified for all our steps in our job.
+
+# entrypoint is basically jb container start ho to kon si command chle usme
