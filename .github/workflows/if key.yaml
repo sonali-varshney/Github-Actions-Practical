@@ -3,7 +3,7 @@ on: [push, pull_request, issues]
 jobs:
   firstjob:                      # i want ye job bs tb chle jb event "push" ho
     runs-on: ubuntu-latest
-    if: github.event_name==push  
+    if: github.event_name == 'push'  
     steps:
       - name: echo krao
         run: echo "HI"
