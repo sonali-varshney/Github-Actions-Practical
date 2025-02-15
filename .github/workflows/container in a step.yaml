@@ -25,7 +25,7 @@ jobs:
           cat /etc/os-release
       - name: jo container k andr env var set kia h uski value dkh lo print kra k
         run: echo $API_URL
-      - name: run a step in a container   # ye step alg container me chl rhi h..job wale container me ni chl ri
+      - name: run a step in a container   # ye step alg container me chl rhi h..job wale container me ni chl ri..see in logs..1 container create hoga
         uses: docker://node:20.3-alpine3.17    #to run a step in a container,we need to write uses: docker//<registry>/<image>:<tag>
         with:
           entrypoint: /usr/local/bin/node

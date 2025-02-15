@@ -1,0 +1,15 @@
+name: if key
+on: [push, pull_request, issues]
+jobs:
+  firstjob:                      # i want ye job bs tb chle jb event "push" ho
+    runs-on: ubuntu-latest
+    if: github.event_name==push  
+    steps:
+      - name: echo krao
+        run: echo "HI"
+  secondjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo kra lo
+        run: echo "hello"
+
