@@ -1,0 +1,16 @@
+name: workflow run
+on:
+  workflow_run:
+    workflows: [context and expression]   #jb context and expression ye wala workflow complete ho jaae tb ye wala workflow run ho
+    types: [completed]    # it cn be completed, requestd, in progress
+    branch:               # not necessary ki branch likhe..it means main branch se ye workflow chlao
+      - main
+
+jobs:
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: context testing
+        run: |
+         echo "${{ toJson(github) }}"
+         echo "print secret context"
